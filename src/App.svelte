@@ -53,6 +53,8 @@
   }
   .weeks {
     grid-area: weeks;
+    position: relative;
+    left: 30px;
   }
   .date {
     grid-area: date;

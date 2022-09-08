@@ -36,10 +36,6 @@ path {
   fill: var(--text-color);
 }
 
-circle {
-  stroke: var(--text-color);
-}
-
 @media (prefers-color-scheme:dark) {
   :root {
     --background-color: black;
@@ -52,8 +48,5 @@ circle {
   path {
     fill: var(--text-color);
   }
-
-  circle {
-    stroke: var(--text-color);
-  }
 }
+
