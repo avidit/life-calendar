@@ -1,6 +1,9 @@
 <script>
   import Arrow from "./lib/Arrow.svelte";
   import Calendar from "./lib/Calendar.svelte";
+  import { DateInput } from "date-picker-svelte";
+
+  let birthday = new Date();
 </script>
 
 <main>
@@ -14,10 +17,13 @@
   </div>
 
   <div class="date">
-    <div style="text-align: right">DATE</div>
-    <div class="arrow" style="transform: rotate(180deg)">
-      <Arrow />
-    </div>
+    <DateInput
+      min={new Date(new Date().setFullYear(new Date().getFullYear() - 100))}
+      max={new Date()}
+      format="yyyy-MM-dd"
+      closeOnSelection={true}
+      bind:value={birthday}
+    />
   </div>
 
   <div class="years">
@@ -30,7 +36,7 @@
   </div>
 
   <div class="calendar">
-    <Calendar />
+    <Calendar {birthday} />
   </div>
 
   <div class="stages">

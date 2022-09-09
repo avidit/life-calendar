@@ -1,6 +1,7 @@
 :root {
   --background-color: white;
   --text-color: black;
+  --date-input-width: 100px;
 
   color-scheme: light dark;
   background-color: var(--background-color);
@@ -35,6 +36,8 @@ path {
   :root {
     --background-color: black;
     --text-color: white;
+    --date-picker-background: var(--background-color);
+    --date-picker-foreground: var(--text-color);
 
     background-color: var(--background-color);
     color: var(--text-color);
@@ -44,4 +47,3 @@ path {
     fill: var(--text-color);
   }
 }
-

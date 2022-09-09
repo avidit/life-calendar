@@ -4,20 +4,24 @@
     const YEARS = 101;
     const WEEKS = 52;
     const MS_PER_WEEK = 604800000; // 1000 * 60 * 60 * 24 * 7;
-    const birthday = "2000-01-01";
-    const ageInWeeks = Math.round(
-        (new Date().getTime() - new Date(birthday).getTime()) / MS_PER_WEEK
-    );
 
-    const getColor = (year) => {
+    export let birthday;
+
+    const getAgeInWeeks = (birthday) => {
+        return Math.round(
+            (new Date().getTime() - new Date(birthday).getTime()) / MS_PER_WEEK
+        );
+    };
+
+    const getColorByYear = (year) => {
         if (year <= 12) {
-            return "#f5aa1f";
-        } else if (year <= 19) {
             return "#f87a40";
+        } else if (year <= 19) {
+            return "#f5aa1f";
         } else if (year <= 34) {
-            return "#db61b0";
-        } else if (year <= 49) {
             return "#ff4fe8";
+        } else if (year <= 49) {
+            return "#F44336";
         } else if (year <= 79) {
             return "#1af041";
         } else {
@@ -30,10 +34,13 @@
     <div class="year">{year}</div>
     <div class="week">
         {#each Array(WEEKS) as _, week}
+            {@const color = getColorByYear(year)}
+            {@const currentWeek = year * 52 + week}
+            {@const ageInWeeks = getAgeInWeeks(birthday)}
             <Circle
-                color={getColor(year)}
-                fill={ageInWeeks >= year * 52 + week}
-                blink={ageInWeeks === year * 52 + week}
+                {color}
+                fill={ageInWeeks >= currentWeek}
+                blink={ageInWeeks === currentWeek}
             />
         {/each}
     </div>
@@ -68,26 +75,26 @@
     }
     .label-childhood {
         position: relative;
-        top: 190px;
+        top: 150px;
     }
     .label-adolesence {
         position: relative;
-        top: 375px;
+        top: 325px;
     }
     .label-early-adulthood {
         position: relative;
-        top: 580px;
+        top: 530px;
     }
     .label-middle-adulthood {
         position: relative;
-        top: 800px;
+        top: 820px;
     }
     .label-mature-adulthood {
         position: relative;
-        top: 1300px;
+        top: 1280px;
     }
     .label-late-adulthood {
         position: relative;
-        top: 1825px;
+        top: 1820px;
     }
 </style>
