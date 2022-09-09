@@ -3,9 +3,9 @@
   import Calendar from "./lib/Calendar.svelte";
 </script>
 
-<h1>CALENDAR OF YOUR LIFE</h1>
-
 <main>
+  <h1>CALENDAR OF YOUR LIFE</h1>
+  <h2>TIME IS LIMITED AND PRECIOUS, HOW DO YOU WANT TO SPEND IT?</h2>
   <div class="weeks">
     <div>WEEKS OF LIFE</div>
     <div class="arrow">
@@ -47,9 +47,22 @@
   main {
     display: grid;
     grid-template-areas:
+      "header header header header header"
+      "header2 header2 header2 header2 header2"
       ". weeks . date ."
       "years calendar calendar calendar stages";
-    padding: 10px;
+  }
+  h1 {
+    grid-area: header;
+    text-align: center;
+    font-size: 4em;
+    margin: auto;
+  }
+  h2 {
+    grid-area: header2;
+    text-align: center;
+    font-size: 1em;
+    margin-top: auto;
   }
   .weeks {
     grid-area: weeks;
@@ -69,7 +82,7 @@
     grid-area: stages;
     position: relative;
     top: 60px;
-    right: 60px;
+    right: 40px;
   }
   .calendar {
     grid-area: calendar;
