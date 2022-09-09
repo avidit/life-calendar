@@ -24,15 +24,17 @@
             return "#2acdf1";
         }
     };
-
-    const isFilled = (year, week) => ageInWeeks >= year * 52 + week;
 </script>
 
 {#each Array(YEARS) as _, year}
     <div class="year">{year}</div>
     <div class="week">
         {#each Array(WEEKS) as _, week}
-            <Circle color={getColor(year)} isFilled={isFilled(year, week)} />
+            <Circle
+                color={getColor(year)}
+                fill={ageInWeeks >= year * 52 + week}
+                blink={ageInWeeks === year * 52 + week}
+            />
         {/each}
     </div>
 {/each}
