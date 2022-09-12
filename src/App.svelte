@@ -77,6 +77,8 @@
   }
   .date {
     grid-area: date;
+    position: relative;
+    right: 30px;
   }
   .years {
     grid-area: years;

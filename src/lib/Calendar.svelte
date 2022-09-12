@@ -30,32 +30,43 @@
     };
 </script>
 
-{#each Array(YEARS) as _, year}
-    <div class="year">{year}</div>
-    <div class="week">
-        {#each Array(WEEKS) as _, week}
-            {@const color = getColorByYear(year)}
-            {@const currentWeek = year * 52 + week}
-            {@const ageInWeeks = getAgeInWeeks(birthday)}
-            <Circle
-                {color}
-                fill={ageInWeeks >= currentWeek}
-                blink={ageInWeeks === currentWeek}
-            />
+<div class="container">
+    <div class="calendar">
+        {#each Array(YEARS) as y, year}
+            <div class="year">{year}</div>
+            <div class="week">
+                {#each Array(WEEKS) as _, week}
+                    {@const color = getColorByYear(year)}
+                    {@const currentWeek = year * 52 + week}
+                    {@const ageInWeeks = getAgeInWeeks(birthday)}
+                    <Circle
+                        {color}
+                        fill={ageInWeeks >= currentWeek}
+                        blink={ageInWeeks === currentWeek}
+                    />
+                {/each}
+            </div>
         {/each}
     </div>
-{/each}
-
-<div class="labels">
-    <p class="label-childhood">Childhood (0 - 12)</p>
-    <p class="label-adolesence">Adolescence (13 - 19)</p>
-    <p class="label-early-adulthood">Early Adulthood (20 - 34)</p>
-    <p class="label-middle-adulthood">Middle Adulthood (35 - 49)</p>
-    <p class="label-mature-adulthood">Mature Adulthood (50 - 79)</p>
-    <p class="label-late-adulthood">Late Adulthood (80 - 100)</p>
+    <div class="labels">
+        <p class="label-childhood">Childhood (0 - 12)</p>
+        <p class="label-adolesence">Adolescence (13 - 19)</p>
+        <p class="label-early-adulthood">Early Adulthood (20 - 34)</p>
+        <p class="label-middle-adulthood">Middle Adulthood (35 - 49)</p>
+        <p class="label-mature-adulthood">Mature Adulthood (50 - 79)</p>
+        <p class="label-late-adulthood">Late Adulthood (80 - 100)</p>
+    </div>
 </div>
 
 <style>
+    .container {
+        display: grid;
+        grid-template-areas: "calendar label";
+        grid-template-columns: 810px 20px;
+    }
+    .calendar {
+        grid-area: calendar;
+    }
     .year {
         float: left;
         width: 30px;
@@ -65,36 +76,34 @@
         overflow: hidden;
     }
     .labels {
-        position: absolute;
-        top: 200px;
-        left: 1220px;
+        grid-area: label;
         font-size: small;
     }
     [class*="label-"] {
-        transform: rotate(90deg);
+        writing-mode: vertical-rl;
     }
     .label-childhood {
         position: relative;
-        top: 150px;
+        top: 100px;
     }
     .label-adolesence {
         position: relative;
-        top: 325px;
+        top: 190px;
     }
     .label-early-adulthood {
         position: relative;
-        top: 530px;
+        top: 280px;
     }
     .label-middle-adulthood {
         position: relative;
-        top: 820px;
+        top: 450px;
     }
     .label-mature-adulthood {
         position: relative;
-        top: 1280px;
+        top: 800px;
     }
     .label-late-adulthood {
         position: relative;
-        top: 1820px;
+        top: 1200px;
     }
 </style>
