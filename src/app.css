@@ -1,7 +1,7 @@
 :root {
   --background-color: white;
   --text-color: black;
-  --date-input-width: 100px;
+  --date-input-width: 90px;
 
   color-scheme: light dark;
   background-color: var(--background-color);

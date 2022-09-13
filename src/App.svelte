@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <div class="date">
+  <div class="date" title="Date of birth">
     <DateInput
       min={new Date(new Date().setFullYear(new Date().getFullYear() - 100))}
       max={new Date()}

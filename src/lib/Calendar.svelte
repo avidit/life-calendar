@@ -13,16 +13,22 @@
         );
     };
 
-    const getColorByYear = (year) => {
-        if (year <= 12) {
+    const getDate = (birthday, week) => {
+        return new Date(
+            new Date(birthday).getTime() + week * MS_PER_WEEK
+        ).toDateString();
+    };
+
+    const getColorByAge = (age) => {
+        if (age <= 12) {
             return "#f87a40";
-        } else if (year <= 19) {
+        } else if (age <= 19) {
             return "#f5aa1f";
-        } else if (year <= 34) {
+        } else if (age <= 34) {
             return "#ff4fe8";
-        } else if (year <= 49) {
+        } else if (age <= 49) {
             return "#F44336";
-        } else if (year <= 79) {
+        } else if (age <= 79) {
             return "#1af041";
         } else {
             return "#2acdf1";
@@ -32,18 +38,23 @@
 
 <div class="container">
     <div class="calendar">
-        {#each Array(YEARS) as y, year}
-            <div class="year">{year}</div>
-            <div class="week">
-                {#each Array(WEEKS) as _, week}
-                    {@const color = getColorByYear(year)}
-                    {@const currentWeek = year * 52 + week}
+        {#each Array(YEARS) as _, yearIdx}
+            {@const year = new Date(birthday).getFullYear() + yearIdx + " A.D"}
+            <div class="year" title={year}>{yearIdx}</div>
+            <div class="weeks">
+                {#each Array(WEEKS) as _, weekIdx}
+                    {@const date = getDate(birthday, weekIdx)}
+                    {@const color = getColorByAge(yearIdx)}
+                    {@const currentWeek = yearIdx * 52 + weekIdx}
                     {@const ageInWeeks = getAgeInWeeks(birthday)}
-                    <Circle
-                        {color}
-                        fill={ageInWeeks >= currentWeek}
-                        blink={ageInWeeks === currentWeek}
-                    />
+                    <div class="week">
+                        <Circle
+                            title={date}
+                            {color}
+                            fill={ageInWeeks >= currentWeek}
+                            blink={ageInWeeks === currentWeek}
+                        />
+                    </div>
                 {/each}
             </div>
         {/each}
@@ -72,12 +83,15 @@
         width: 30px;
         text-align: center;
     }
-    .week {
+    .weeks {
         overflow: hidden;
+    }
+    .week {
+        float: left;
     }
     .labels {
         grid-area: label;
-        font-size: small;
+        font-size: 12px;
     }
     [class*="label-"] {
         writing-mode: vertical-rl;

@@ -2,12 +2,14 @@
     let width = 15;
     let height = 15;
     let viewBox = `0 0 ${width} ${height}`;
+    export let title;
     export let color;
     export let fill = false;
     export let blink = false;
 </script>
 
 <svg {width} {height} {viewBox}>
+    <title>{title}</title>
     <circle
         cx={Number(width) / 2}
         cy={Number(height) / 2}
